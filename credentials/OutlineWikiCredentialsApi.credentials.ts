@@ -5,34 +5,35 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class HttpBinApi implements ICredentialType {
-	name = 'httpbinApi';
-	displayName = 'HttpBin API';
-	documentationUrl = '<your-docs-url>';
+export class OutlineWikiCredentialsApi implements ICredentialType {
+	name = 'outlineWikiCredentialsApi';
+	displayName = 'Outline Wiki Credentials API';
 	properties: INodeProperties[] = [
+		// The credentials to get from user and save encrypted.
+		// Properties can be defined exactly in the same way
+		// as node properties.
 		{
-			displayName: 'Token',
+			displayName: 'API Token',
 			name: 'token',
 			type: 'string',
+			typeOptions: {
+				password: true,
+			},
 			default: '',
 		},
-		{
+        {
 			displayName: 'Domain',
 			name: 'domain',
 			type: 'string',
-			default: 'https://httpbin.org',
+			default: 'https://app.getoutline.com/api',
 		},
 	];
 
-	// This allows the credential to be used by other parts of n8n
-	// stating how this credential is injected as part of the request
-	// An example is the Http Request node that can make generic calls
-	// reusing this credential
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			headers: {
-				Authorization: '={{"Bearer " + $credentials.token}}',
+				Authorization: '={{"Bearer " + $credentials.token }}',
 			},
 		},
 	};
@@ -41,7 +42,7 @@ export class HttpBinApi implements ICredentialType {
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials?.domain}}',
-			url: '/bearer',
+			url: '/auth.info',
 		},
 	};
 }
