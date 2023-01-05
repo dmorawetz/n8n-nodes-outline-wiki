@@ -56,16 +56,34 @@ export class OutlineWiki implements INodeType {
                 type: 'options',
                 options: [
                     {
-                        name: 'Download',
-                        value: 'download',
+                        name: 'Download document',
+                        value: 'downloadDocument',
                         action: 'Download a document',
                         description: 'Download a document',
                     },
                     {
+                        name: 'Download documents',
+                        value: 'downloadDocuments',
+                        action: 'Download a list of documents',
+                        description: 'Download a list of documents',
+                    },
+                    {
+                        name: 'List documents',
+                        value: 'listDocuments',
+                        action: 'List documents',
+                        description: 'List documents',
+                    },
+                    {
+                        name: 'Extract attachments',
+                        value: 'extractAttachments',
+                        action: "Extract a document's attachments",
+                        description: "Extract a document's attachments",
+                    },
+                    {
                         name: 'Download attachments',
                         value: 'downloadAttachments',
-                        action: 'Download a documents attachments',
-                        description: 'Download a documents attachments',
+                        action: "Download a document's attachments",
+                        description: "Download a document's attachments",
                     },
                 ],
                 displayOptions: {
@@ -73,7 +91,7 @@ export class OutlineWiki implements INodeType {
                         resource: ['document'],
                     },
                 },
-                default: 'download',
+                default: 'downloadDocument',
                 description: 'Operation to perform',
                 noDataExpression: true,
             },
@@ -88,7 +106,50 @@ export class OutlineWiki implements INodeType {
                 displayOptions: {
                     show: {
                         resource: ['document'],
-                        operation: ['download'],
+                        operation: ['downloadDocument'],
+                    },
+                },
+            },
+            {
+                displayName: 'Parent Document ID',
+                name: 'parentDocumentId',
+                type: 'string',
+                required: false,
+                description: 'The identifier of the parent document (uuid)',
+                default: '',
+                placeholder: '314b1a77-c1f9-4fb8-8159-3646acb2a213',
+                displayOptions: {
+                    show: {
+                        resource: ['document'],
+                        operation: ['listDocuments'],
+                    },
+                },
+            },
+            {
+                displayName: 'Limit',
+                name: 'limit',
+                type: 'number',
+                required: false,
+                description: 'The max. number of documents to fetch',
+                default: '15',
+                displayOptions: {
+                    show: {
+                        resource: ['document'],
+                        operation: ['listDocuments'],
+                    },
+                },
+            },
+            {
+                displayName: 'File Prefix',
+                name: 'filePrefix',
+                type: 'string',
+                required: true,
+                description: 'Prefix for the filename',
+                default: 'attachments/',
+                displayOptions: {
+                    show: {
+                        resource: ['document'],
+                        operation: ['downloadAttachments'],
                     },
                 },
             },

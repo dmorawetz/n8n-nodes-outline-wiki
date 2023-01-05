@@ -2,16 +2,16 @@
 	"node": "n8n-nodes-base.OutlineWiki",
 	"nodeVersion": "1.3",
 	"codexVersion": "1.3",
-	"categories": ["Development", "Developer Tools"],
+	"categories": ["Marketing & Content"],
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "http://httpbin.org/#/Auth/get_bearer"
+				"url": "https://www.getoutline.com/developers#section/Authentication"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "http://httpbin.org/"
+				"url": "https://www.getoutline.com/developers"
 			}
 		]
 	}
