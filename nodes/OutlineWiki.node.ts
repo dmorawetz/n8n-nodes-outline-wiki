@@ -80,10 +80,22 @@ export class OutlineWiki implements INodeType {
                         description: "Extract a document's attachments",
                     },
                     {
+                        name: 'Replace image links',
+                        value: 'replaceImageLinks',
+                        action: "Replace image links with downloaded attachment paths",
+                        description: "Replace image links with downloaded attachment paths",
+                    },
+                    {
                         name: 'Download attachments',
                         value: 'downloadAttachments',
                         action: "Download a document's attachments",
                         description: "Download a document's attachments",
+                    },
+                    {
+                        name: 'Fix markdown export',
+                        value: 'fixMarkdownExport',
+                        action: 'Fix some markdown export issues for pandoc',
+                        description: 'Fix some markdown export issues for pandoc',
                     },
                 ],
                 displayOptions: {
@@ -150,6 +162,34 @@ export class OutlineWiki implements INodeType {
                     show: {
                         resource: ['document'],
                         operation: ['downloadAttachments'],
+                    },
+                },
+            },
+            {
+                displayName: 'Fix slash',
+                name: 'fixSlashOnEmptyLine',
+                type: 'boolean',
+                required: false,
+                description: 'Remove slash on empty line',
+                default: true,
+                displayOptions: {
+                    show: {
+                        resource: ['document'],
+                        operation: ['fixMarkdownExport'],
+                    },
+                },
+            },
+            {
+                displayName: 'Fix citation',
+                name: 'fixSquareBracketCitations',
+                type: 'boolean',
+                required: false,
+                description: 'Remove backslash before square brackets with citations',
+                default: true,
+                displayOptions: {
+                    show: {
+                        resource: ['document'],
+                        operation: ['fixMarkdownExport'],
                     },
                 },
             },

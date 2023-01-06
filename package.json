@@ -6,7 +6,7 @@
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/dmorawetz/n8n-nodes-outline-wiki",
   "author": {
     "name": "Daniel Morawetz",
     "email": "daniel@morawetz.dev"

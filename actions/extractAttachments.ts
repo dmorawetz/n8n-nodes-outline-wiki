@@ -4,7 +4,7 @@ import { INodeExecutionData, NodeOperationError } from 'n8n-workflow';
 export async function extractAttachments(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
     const items = this.getInputData();
 
-    const re = /!\[([^\]]*)\]\(\/api\/attachments\.redirect\?id=([^)]*)\)/gmu;
+    const re = /!\[(.*?)\]\(\/api\/attachments\.redirect\?id=([^)]*)\)/gmu;
 
     let text = items[index].json.text as string;
 
