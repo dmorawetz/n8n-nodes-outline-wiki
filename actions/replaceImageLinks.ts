@@ -23,7 +23,8 @@ export async function replaceImageLinks(this: IExecuteFunctions): Promise<INodeE
         let text = d.text as string;
 
         for (const a of attachments.get(did)!) {
-            text = text.replace(`(/api/attachments.redirect?id=${a.id})`, `(${a.fileName})`);
+            const re = new RegExp(`\\(\/api\/attachments\\.redirect\\?id=${a.id}[^)]*\\)`);
+            text = text.replace(re, `(${a.fileName})`);
         }
 
         returnData.push({
