@@ -23,8 +23,13 @@ export async function replaceImageLinks(this: IExecuteFunctions): Promise<INodeE
         let text = d.text as string;
 
         for (const a of attachments.get(did)!) {
-            const re = new RegExp(`\\(\/api\/attachments\\.redirect\\?id=${a.id}[^)]*\\)`);
-            text = text.replace(re, `(${a.fileName})`);
+            const re = new RegExp(`\\(\/api\/attachments\\.redirect\\?id=${a.id}([^)]*)\\)`);
+            const match = text.match(re);
+            if (match != null && match[1] == ' "full-width"') {
+                text = text.replace(re, `(${a.fileName}#full-width)`);
+            } else {
+                text = text.replace(re, `(${a.fileName})`);
+            }
         }
 
         returnData.push({
